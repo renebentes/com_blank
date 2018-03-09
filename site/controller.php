@@ -1,27 +1,25 @@
 <?php
 /**
-* Author:	Omar Muhammad
-* Email:	admin@omar84.com
-* Website:	http://omar84.com
-* Component:Blank Component
-* Version:	3.0.0
-* Date:		03/11/2012
-* copyright	Copyright (C) 2012 http://omar84.com. All Rights Reserved.
-* @license	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-**/
+ * @package     Joomla.Site
+ * @subpackage  Components.Blank
+ *
+ * @author      Omar Muhammad <admin@omar84.com>
+ * @copyright   Copyright (C) 2012 http://omar84.com. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
+ * @link        http://omar84.com
+ * @since       3.0.1
+ */
+
 // No direct access
 defined('_JEXEC') or die;
 
-jimport('joomla.application.component.controller');
-
+/**
+ * Blank Component Controller
+ *
+ * @package     Joomla.Site
+ * @subpackage  Components.Blank
+ * @since       3.0.0
+ */
 class BlankComponentController extends JControllerLegacy
 {
-
-	public function display($cachable = false, $urlparams = false)
-	{
-		JRequest::setVar('view','default'); // force it to be the search view
-
-		return parent::display($cachable, $urlparams);
-	}
-
 }
