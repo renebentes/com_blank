@@ -1,42 +1,26 @@
 <?php
 /**
-* Author:	Omar Muhammad
-* Email:	admin@omar84.com
-* Website:	http://omar84.com
-* Component:Blank Component
-* Version:	3.0.0
-* Date:		03/11/2012
-* copyright	Copyright (C) 2012 http://omar84.com. All Rights Reserved.
-* @license	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-**/
+ * @package     Joomla.Site
+ * @subpackage  Components.Blank
+ *
+ * @author      Omar Muhammad <admin@omar84.com>
+ * @copyright   Copyright (C) 2012 http://omar84.com. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
+ * @link        http://omar84.com
+ * @since       3.0.0
+ */
 
-defined( '_JEXEC' ) or die( 'Restricted access' );
+// No direct access
+defined('_JEXEC') or die;
 
-$app = JFactory::getApplication();
-$admin = $app->isAdmin();
-if($admin==1)
-	{
-?>
-<div>
-	This Component was made to make it possible to create a menu item that has only modules and no component.<br />
-	You can use it by adding a new menu item, select "Blank Component" from the "Menu Item Type" list, and save.<br />
-	then, go to the module manager, and assign the modules you want to use with this menu item, and you're done!<br />
-</div>
-<?php
-	}
-else
-	{
+JHtml::_('behavior.tabstate');
 
-	jimport('joomla.application.component.controller');
+if (!JFactory::getUser()->authorise('core.manage', 'com_blankcomponent'))
+{
+	throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+}
 
-	// Create the controller
-	$controller = JControllerLegacy::getInstance('BlankComponent');
+$controller = JControllerLegacy::getInstance('BlankComponent');
+$controller->execute(JFactory::getApplication()->input->getCmd('task'));
+$controller->redirect();
 
-	// Perform the Request task
-	$controller->execute(JRequest::getCmd('task'));
-
-	// Redirect if set by the controller
-	$controller->redirect();
-	}
-
- ?>
